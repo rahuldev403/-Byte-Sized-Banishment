@@ -1,4 +1,3 @@
-import React from "react";
 import { FaFistRaised, FaFire, FaCrown } from "react-icons/fa";
 import { GiLevelEndFlag } from "react-icons/gi";
 

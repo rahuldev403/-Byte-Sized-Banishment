@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
@@ -14,7 +14,6 @@ import {
   FaUsers,
   FaPlay,
   FaPause,
-  FaFire,
 } from "react-icons/fa";
 import { GiLevelEndFlag, GiCrown, GiFist } from "react-icons/gi";
 import GauntletSetupModal from "../components/GauntletSetupModal";

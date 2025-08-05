@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import {
   FaUserPlus,
@@ -11,9 +11,7 @@ import {
   FaSkull,
   FaBook,
   FaGamepad,
-  FaSearch,
   FaInbox,
-  FaUserMinus,
   FaBalanceScale,
   FaClock,
 } from "react-icons/fa";

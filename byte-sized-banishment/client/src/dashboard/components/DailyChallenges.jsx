@@ -1,4 +1,3 @@
-import React from "react";
 import { FaScroll, FaSkullCrossbones } from "react-icons/fa";
 
 const DailyChallenges = ({ challenge, weakestLink }) => {

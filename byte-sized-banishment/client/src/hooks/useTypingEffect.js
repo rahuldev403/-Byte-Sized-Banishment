@@ -4,7 +4,7 @@ const useTypingEffect = (text, speed = 50) => {
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
-    setDisplayedText(""); // Reset when text changes
+    setDisplayedText("");
     if (text) {
       let i = 0;
       const intervalId = setInterval(() => {

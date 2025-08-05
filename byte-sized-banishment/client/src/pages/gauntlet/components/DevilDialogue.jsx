@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { FaVolumeUp, FaVolumeMute, FaFire } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
+import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import { GiDevilMask } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTypingEffect } from "../../../hooks/useTypingEffect"; // Adjust path if needed

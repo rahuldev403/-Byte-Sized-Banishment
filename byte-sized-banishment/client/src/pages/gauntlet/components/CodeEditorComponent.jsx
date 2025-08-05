@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Editor from "@monaco-editor/react";
-import { FaJs, FaPython, FaJava } from "react-icons/fa";
+import { FaPython, FaJava } from "react-icons/fa";
 import { SiCplusplus, SiJavascript } from "react-icons/si";
-import { FaBolt, FaCode, FaUser } from "react-icons/fa";
+import { FaBolt, FaCode } from "react-icons/fa";
 
 const CodeEditorComponent = ({ onCodeChange, value, language, question }) => {
   const [userSelectedLanguage, setUserSelectedLanguage] = useState(null);

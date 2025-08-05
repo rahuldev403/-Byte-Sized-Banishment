@@ -1,4 +1,3 @@
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaExclamationTriangle, FaShieldAlt, FaRunning } from "react-icons/fa";
 

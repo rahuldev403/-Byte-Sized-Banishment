@@ -1,6 +1,4 @@
-import React from "react";
 import {
-  FaHeart,
   FaStar,
   FaQuestionCircle,
   FaChartLine,

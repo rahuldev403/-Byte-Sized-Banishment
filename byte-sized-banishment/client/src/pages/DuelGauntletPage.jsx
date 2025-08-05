@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  FaHeart,
-  FaChartLine,
-  FaEye,
-  FaEyeSlash,
   FaStar,
   FaFire,
   FaBolt,
   FaSkull,
-  FaRunning,
   FaCode,
   FaPaperPlane,
-  FaExclamationTriangle,
   FaQuestionCircle,
 } from "react-icons/fa";
 import DevilDialogue from "./gauntlet/components/DevilDialogue";

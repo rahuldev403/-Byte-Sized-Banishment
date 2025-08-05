@@ -1,4 +1,3 @@
-import React from "react";
 import MCQComponent from "./MCQComponent";
 import IntegerComponent from "./IntegerComponent";
 import CodeEditorComponent from "./CodeEditorComponent";

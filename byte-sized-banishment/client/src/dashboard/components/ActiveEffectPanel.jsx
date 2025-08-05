@@ -1,4 +1,3 @@
-import React from "react";
 import { useCountdown } from "../../hooks/useCountdown";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 

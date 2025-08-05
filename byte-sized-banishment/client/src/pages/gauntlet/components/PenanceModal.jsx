@@ -1,4 +1,3 @@
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GiDevilMask } from "react-icons/gi";
 import { FaScroll, FaFire } from "react-icons/fa";
