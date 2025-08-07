@@ -339,12 +339,8 @@ export const resetPassword = async (req, res) => {
       });
     }
 
-    // Hash the new password
-    const saltRounds = 12;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    // Update user's password
-    user.password = hashedPassword;
+    // Update user's password (let the pre-save middleware handle hashing)
+    user.password = password;
     await user.save();
 
     // Mark the reset token as used
