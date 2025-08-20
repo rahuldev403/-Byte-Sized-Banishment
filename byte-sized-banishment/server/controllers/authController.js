@@ -11,7 +11,6 @@ import {
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import config from "../config/index.js";
-import bcrypt from "bcryptjs";
 
 // @desc    Register a new user
 // @route   POST /api/auth/register

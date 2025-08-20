@@ -134,7 +134,6 @@ function AppContent() {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
       {showIntro && <IntroVideoOverlay onFinish={handleIntroFinish} />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -198,6 +197,7 @@ function App() {
   return (
     <Router>
       <AppContent />
+      <Toaster position="top-center" reverseOrder={false} />
     </Router>
   );
 }
