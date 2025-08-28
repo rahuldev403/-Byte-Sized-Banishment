@@ -28,51 +28,58 @@ import devilSigil from "../assets/wing.jpg";
 
 const fireShadow = "0 0 20px 7px #ff3b0faf, 0 0 30px 14px #a80019cc";
 
-const Header = ({ user, onLogout }) => (
-  <motion.header
-    initial={{ opacity: 0, y: -40 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1, type: "spring" }}
-    className="flex justify-between items-center mb-10 relative"
-  >
-    <div className="flex items-center gap-4">
-      <motion.img
-        src={logoImage}
-        alt="Logo"
-        className="h-14 w-14 rounded-full shadow-xl border-4 border-red-800 animate-firelogo"
-        style={{ boxShadow: fireShadow }}
-        initial={{ scale: 0.92 }}
-        animate={{ scale: [1, 1.04, 1] }}
-        transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-      />
-      <div>
-        <h1
-          className="text-3xl md:text-4xl font-black text-white tracking-widest devil-text-flicker"
-          style={{ textShadow: fireShadow }}
-        >
-          The Devil's Crossroads
-        </h1>
-        <p className="text-base text-red-400/70 font-mono tracking-tight">
-          Welcome back,{" "}
-          <span className="text-yellow-400 font-bold">
-            {user?.username || user?.email}
-          </span>
-        </p>
-      </div>
-    </div>
-    <motion.button
-      onClick={onLogout}
-      whileHover={{
-        scale: 1.1,
-        backgroundColor: "#941204",
-        boxShadow: fireShadow,
-      }}
-      className="bg-black font-bold py-2 px-5 rounded-xl shadow-lg border-2 border-red-600/60 text-white hover:border-yellow-400 transition-all"
+const ADMIN_EMAILS = [
+  "level432520537352822@gmail.com",
+  // Add more admin emails here
+];
+
+const Header = ({ user, onLogout }) => {
+  return (
+    <motion.header
+      initial={{ opacity: 0, y: -40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, type: "spring" }}
+      className="flex justify-between items-center mb-10 relative"
     >
-      Logout
-    </motion.button>
-  </motion.header>
-);
+      <div className="flex items-center gap-4">
+        <motion.img
+          src={logoImage}
+          alt="Logo"
+          className="h-14 w-14 rounded-full shadow-xl border-4 border-red-800 animate-firelogo"
+          style={{ boxShadow: fireShadow }}
+          initial={{ scale: 0.92 }}
+          animate={{ scale: [1, 1.04, 1] }}
+          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+        />
+        <div>
+          <h1
+            className="text-3xl md:text-4xl font-black text-white tracking-widest devil-text-flicker"
+            style={{ textShadow: fireShadow }}
+          >
+            The Devil's Crossroads
+          </h1>
+          <p className="text-base text-red-400/70 font-mono tracking-tight">
+            Welcome back,{" "}
+            <span className="text-yellow-400 font-bold">
+              {user?.username || user?.email}
+            </span>
+          </p>
+        </div>
+      </div>
+      <motion.button
+        onClick={onLogout}
+        whileHover={{
+          scale: 1.1,
+          backgroundColor: "#941204",
+          boxShadow: fireShadow,
+        }}
+        className="bg-black font-bold py-2 px-5 rounded-xl shadow-lg border-2 border-red-600/60 text-white hover:border-yellow-400 transition-all"
+      >
+        Logout
+      </motion.button>
+    </motion.header>
+  );
+};
 
 const StatsCard = ({ stats }) => {
   const xpPercentage =
@@ -383,6 +390,7 @@ const Dashboard = () => {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const [dashboardData, setDashboardData] = useState(null);
+  const [activeEffect, setActiveEffect] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isDrillLoading, setIsDrillLoading] = useState(false);
   const [error, setError] = useState("");
@@ -404,8 +412,10 @@ const Dashboard = () => {
           "http://localhost:5000/api/user/dashboard",
           config
         );
-        if (data.success) setDashboardData(data);
-        else throw new Error(data.message || "Failed to fetch data");
+        if (data.success) {
+          setDashboardData(data);
+          setActiveEffect(data.stats.activeEffect || null);
+        } else throw new Error(data.message || "Failed to fetch data");
       } catch (err) {
         setError(err.message || "Could not connect to the server.");
         if (err.response?.status === 401) logout();
@@ -616,6 +626,22 @@ const Dashboard = () => {
     }
   };
 
+  // Effect: Watch activeEffect and clear it when timer ends
+  useEffect(() => {
+    if (!activeEffect || !activeEffect.expiresAt) return;
+    const expiresAt = new Date(activeEffect.expiresAt).getTime();
+    const now = Date.now();
+    const msLeft = expiresAt - now;
+    if (msLeft <= 0) {
+      setActiveEffect(null);
+      return;
+    }
+    const timeout = setTimeout(() => {
+      setActiveEffect(null);
+    }, msLeft + 1000); // +1s buffer for timer rounding
+    return () => clearTimeout(timeout);
+  }, [activeEffect]);
+
   if (loading)
     return (
       <div className="bg-gray-950 text-white min-h-screen flex justify-center items-center">
@@ -690,7 +716,7 @@ const Dashboard = () => {
               <Sidebar
                 dailyChallenge={dashboardData.dailyChallenge}
                 weakestLink={dashboardData.weakestLink}
-                activeEffect={dashboardData.stats.activeEffect}
+                activeEffect={activeEffect}
                 onStartWeaknessDrill={handleStartWeaknessDrill}
                 isDrillLoading={isDrillLoading}
               />
@@ -705,6 +731,33 @@ const Dashboard = () => {
             <SkillTreeCard />
             <LeaderboardCard />
             <SocialCard />
+            {/* Admin Upload Questions Card */}
+            {currentUser && ADMIN_EMAILS.includes(currentUser.email) && (
+              <div
+                onClick={() => navigate("/admin/upload-question")}
+                className="cursor-pointer h-full"
+              >
+                <CardBase
+                  color="border-green-500 hover:border-green-400"
+                  className="h-full"
+                >
+                  <FaScroll className="text-4xl text-green-400" />
+                  <div className="flex-1 flex flex-col justify-center">
+                    <h3 className="font-bold text-green-300 text-lg mb-1">
+                      Upload Questions
+                    </h3>
+                    <span className="flex items-center gap-3 justify-center">
+                      <p className="text-sm text-gray-400 mb-2">
+                        Add new questions
+                      </p>
+                      <span className="bg-green-700/20 text-green-300 px-3 py-1 rounded-full text-xs font-mono">
+                        Admin Only
+                      </span>
+                    </span>
+                  </div>
+                </CardBase>
+              </div>
+            )}
           </div>
         </div>
       </div>

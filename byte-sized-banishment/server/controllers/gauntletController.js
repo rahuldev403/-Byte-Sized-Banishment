@@ -119,6 +119,11 @@ export const handleTimeout = async (req, res) => {
         (session.sessionEndTime - session.sessionStartTime) / 1000
       );
 
+      // Add audioUrl placeholder to timeout feedback
+      if (timeoutDialogue && !timeoutDialogue.audioUrl) {
+        timeoutDialogue.audioUrl = null; // Placeholder for timeout audio
+      }
+
       return res.json({
         result: "timeout",
         feedback: timeoutDialogue,
@@ -253,26 +258,54 @@ export const handleTimeout = async (req, res) => {
 const getTimeoutDialogue = (difficulty, questionType) => {
   const timeoutMessages = {
     easy: {
-      mcq: "Too slow! Even a sloth could pick faster than that!",
-      integer: "Time's up! Your calculations need more speed, mortal!",
-      code: "Timeout! Your coding fingers are as slow as your brain!",
+      mcq: {
+        text: "Too slow! Even a sloth could pick faster than that!",
+        audioUrl: null, // Placeholder for easy-mcq timeout audio
+      },
+      integer: {
+        text: "Time's up! Your calculations need more speed, mortal!",
+        audioUrl: null, // Placeholder for easy-integer timeout audio
+      },
+      code: {
+        text: "Timeout! Your coding fingers are as slow as your brain!",
+        audioUrl: null, // Placeholder for easy-code timeout audio
+      },
     },
     medium: {
-      mcq: "Time expired! Speed is as important as accuracy in my realm!",
-      integer: "Too sluggish! Mathematical prowess requires swift thinking!",
-      code: "Code timeout! Your programming pace disappoints me greatly!",
+      mcq: {
+        text: "Time expired! Speed is as important as accuracy in my realm!",
+        audioUrl: null, // Placeholder for medium-mcq timeout audio
+      },
+      integer: {
+        text: "Too sluggish! Mathematical prowess requires swift thinking!",
+        audioUrl: null, // Placeholder for medium-integer timeout audio
+      },
+      code: {
+        text: "Code timeout! Your programming pace disappoints me greatly!",
+        audioUrl: null, // Placeholder for medium-code timeout audio
+      },
     },
     hard: {
-      mcq: "Pathetically slow! Elite minds don't hesitate this long!",
-      integer: "Time's up! Advanced problems demand rapid solutions!",
-      code: "Coding timeout! Four minutes should be plenty for a competent programmer!",
+      mcq: {
+        text: "Pathetically slow! Elite minds don't hesitate this long!",
+        audioUrl: null, // Placeholder for hard-mcq timeout audio
+      },
+      integer: {
+        text: "Time's up! Advanced problems demand rapid solutions!",
+        audioUrl: null, // Placeholder for hard-integer timeout audio
+      },
+      code: {
+        text: "Coding timeout! Four minutes should be plenty for a competent programmer!",
+        audioUrl: null, // Placeholder for hard-code timeout audio
+      },
     },
   };
 
-  const message =
-    timeoutMessages[difficulty]?.[questionType] ||
-    "Time's up! Speed up or face my wrath!";
-  return { text: message, audioUrl: null };
+  const messageObj = timeoutMessages[difficulty]?.[questionType] || {
+    text: "Time's up! Speed up or face my wrath!",
+    audioUrl: null, // Placeholder for generic timeout audio
+  };
+  return messageObj;
 };
 
 // --- Controller Functions ---
@@ -469,6 +502,7 @@ export const submitAnswer = async (req, res) => {
         };
         devilDialogue = {
           text: "A 5-win streak... Impressive. You've been blessed with Feverish Focus, granting 1.5x XP for 5 minutes.",
+          audioUrl: null, // Placeholder for blessing audio
         };
       }
 
@@ -479,6 +513,7 @@ export const submitAnswer = async (req, res) => {
         user.rank = getRankForLevel(user.level);
         devilDialogue = {
           text: `You've reached Level ${user.level}! Your new rank is ${user.rank}. Don't get cocky.`,
+          audioUrl: null, // Placeholder for level up audio
         };
       }
     } else {
@@ -511,6 +546,7 @@ export const submitAnswer = async (req, res) => {
         };
         devilDialogue = {
           text: "You're faltering. You've been cursed with Crippling Doubt! Your XP gains are halved for 5 minutes.",
+          audioUrl: null, // Placeholder for curse audio
         };
       }
     }
@@ -528,6 +564,10 @@ export const submitAnswer = async (req, res) => {
         ? `CORRECT_ANSWER_${question.difficulty.toUpperCase()}`
         : `INCORRECT_ANSWER_${question.difficulty.toUpperCase()}`;
       devilDialogue = getDevilDialogue(trigger);
+      // Add audioUrl placeholder if not present
+      if (devilDialogue && !devilDialogue.audioUrl) {
+        devilDialogue.audioUrl = null; // Placeholder for generic dialogue audio
+      }
     }
 
     // Check for session end conditions
@@ -554,9 +594,14 @@ export const submitAnswer = async (req, res) => {
         (session.sessionEndTime - session.sessionStartTime) / 1000
       );
 
+      // Add audioUrl placeholder to GAME_OVER feedback
+      const gameOverDialogue = getDevilDialogue("GAME_OVER");
+      if (gameOverDialogue && !gameOverDialogue.audioUrl) {
+        gameOverDialogue.audioUrl = null; // Placeholder for game over audio
+      }
       return res.json({
         result: "incorrect",
-        feedback: getDevilDialogue("GAME_OVER"),
+        feedback: gameOverDialogue,
         isGameOver: true,
         punishment: punishment,
         sessionSummary: {
@@ -608,9 +653,14 @@ export const submitAnswer = async (req, res) => {
         (session.sessionEndTime - session.sessionStartTime) / 1000
       );
 
+      // Add audioUrl placeholder to SESSION_WIN feedback
+      const sessionWinDialogue = getDevilDialogue("SESSION_WIN");
+      if (sessionWinDialogue && !sessionWinDialogue.audioUrl) {
+        sessionWinDialogue.audioUrl = null; // Placeholder for session win audio
+      }
       return res.json({
         result: isCorrect ? "correct" : "incorrect",
-        feedback: getDevilDialogue("SESSION_WIN"),
+        feedback: sessionWinDialogue,
         isGameOver: true,
         sessionSummary: {
           questionsCompleted: session.currentQuestionIndex - 1,

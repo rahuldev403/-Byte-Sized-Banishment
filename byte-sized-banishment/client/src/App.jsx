@@ -17,6 +17,7 @@ import ResetPassword from "./pages/ResetPassword";
 import VerificationSuccess from "./pages/VerificationSuccess";
 import VerificationError from "./pages/VerificationError";
 import ProtectedRoute from "./components/ProtectedRoute";
+import QuestionUploadPage from "./pages/QuestionUploadPage";
 import backgroundVideo from "./assets/background.mp4";
 
 // ------------- IntroVideoOverlay component -------------
@@ -185,6 +186,14 @@ function AppContent() {
           element={
             <ProtectedRoute>
               <DuelGauntletPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/upload-question"
+          element={
+            <ProtectedRoute>
+              <QuestionUploadPage />
             </ProtectedRoute>
           }
         />

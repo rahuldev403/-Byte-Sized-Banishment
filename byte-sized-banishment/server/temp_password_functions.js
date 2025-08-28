@@ -1,8 +1,3 @@
-// Add these functions to the end of authController.js
-
-// @desc    Send password reset email
-// @route   POST /api/auth/forgot-password
-// @access  Public
 export const forgotPassword = async (req, res) => {
   const { email } = req.body;
 
@@ -16,7 +11,6 @@ export const forgotPassword = async (req, res) => {
       });
     }
 
-    // Check if user is verified
     if (!user.isVerified) {
       return res.status(400).json({
         success: false,

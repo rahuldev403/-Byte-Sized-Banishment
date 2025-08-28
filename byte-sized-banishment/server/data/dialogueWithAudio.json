@@ -2,113 +2,167 @@
   "GAUNTLET_START": [
     {
       "text": "Let's see if you have what it takes, mortal.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Let's+see+if+you+have+what+it+takes%2C+mortal.mp3"
     },
     {
       "text": "Your trial begins now. Try not to disappoint me.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Your+trial+begins+now.+Try+not+to+disappoint+me.mp3"
     },
-    { "text": "Another soul dares to challenge me? Amusing.", "audioUrl": null }
+    {
+      "text": "Another soul dares to challenge me? Amusing.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/ElevenLabs_2025-08-26T04_45_08_Mordred+-+Evil+Villain+B%C3%B6sewicht_pvc_sp100_s50_sb75_se0_b_m2.mp3"
+    }
   ],
   "CORRECT_ANSWER_EASY": [
     {
       "text": "Fine, whatever. That was an easy one anyway.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Fine%2C+whatever.+That+was+an+easy+one+anyway.mp3"
     },
-    { "text": "Don't get used to it.", "audioUrl": null },
+    {
+      "text": "Don't get used to it.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Don't+get+used+to+it.mp3"
+    },
     {
       "text": "Even a goblin could answer that. I'm not impressed.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Even+a+goblin+could+answer+that.+I'm+not+impressed.mp3"
     },
     {
       "text": "Correct. A single drop of knowledge in your ocean of ignorance.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Correct.+A+single+drop+of+knowledge+in+your+ocean+of+ignorance.mp3"
     }
   ],
   "CORRECT_ANSWER_MEDIUM": [
-    { "text": "Hmph. A lucky guess, mortal.", "audioUrl": null },
-    { "text": "Not bad... for a human.", "audioUrl": null },
+    {
+      "text": "Hmph. A lucky guess, mortal.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Hmph.+A+lucky+guess%2C+mortal.mp3"
+    },
+    {
+      "text": "Not bad... for a human.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Not+bad...+for+a+human.mp3"
+    },
     {
       "text": "Acceptable. But the real challenges are yet to come.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Acceptable.+But+the+real+challenges+are+yet+to+come..mp3"
     },
-    { "text": "You grasp the concept. Barely.", "audioUrl": null }
+    {
+      "text": "You grasp the concept. Barely.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/You+grasp+the+concept.+Barely..mp3"
+    }
   ],
   "CORRECT_ANSWER_HARD": [
-    { "text": "Impressive. But your luck will run out.", "audioUrl": null },
+    {
+      "text": "Impressive. But your luck will run out.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Impressive.+But+your+luck+will+run+out..mp3"
+    },
     {
       "text": "You may have won the battle, but the war is far from over.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/You+may+have+won+the+battle%2C+but+the+war+is+far+from+over..mp3"
     },
     {
       "text": "A flicker of brilliance. Let's see if you can sustain it.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/A+flicker+of+brilliance.+Let's+see+if+you+can+sustain+it..mp3"
     },
     {
       "text": "Well done. Perhaps you're not as hopeless as I thought.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Well+done.+Perhaps+you're+not+as+hopeless+as+I+thought.mp3"
     }
   ],
   "INCORRECT_ANSWER_EASY": [
-    { "text": "Pathetic! You call that an attempt?", "audioUrl": null },
+    {
+      "text": "Pathetic! You call that an attempt?",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Pathetic+You+call+that+an+attempt.mp3"
+    },
     {
       "text": "Was that a guess, or did you actually think that was correct? Both are equally sad.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Was+that+a+guess%2C+or+did+you+actually+think+that+was+correct+Both+are+equally+sad..mp3"
     },
-    { "text": "Wrong. Utterly and embarrassingly wrong.", "audioUrl": null },
+    {
+      "text": "Wrong. Utterly and embarrassingly wrong.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Wrong.+Utterly+and+embarrassingly+wrong.mp3"
+    },
     {
       "text": "I've seen calculators with more processing power than you.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/I+ve+seen+calculators+with+more+processing+power+than+you..mp3"
     }
   ],
   "INCORRECT_ANSWER_MEDIUM": [
-    { "text": "Are you even trying?", "audioUrl": null },
-    { "text": "My disappointment is immeasurable.", "audioUrl": null },
-    { "text": "That was painfully incorrect. Try again.", "audioUrl": null },
-    { "text": "Error 404: Brain not found.", "audioUrl": null }
+    {
+      "text": "Are you even trying?",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Are+you+even+trying.mp3"
+    },
+    {
+      "text": "My disappointment is immeasurable.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/My+disappointment+is+immeasurable..mp3"
+    },
+    {
+      "text": "That was painfully incorrect. Try again.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/That+was+painfully+incorrect.+Try+again..mp3"
+    },
+    {
+      "text": "Error 404: Brain not found.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Error+404+Brain+not+found.mp3"
+    }
   ],
   "INCORRECT_ANSWER_HARD": [
     {
       "text": "And so, your confidence crumbles to dust. As expected.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/And+so+your+confidence+crumbles+to+dust.+As+expected..mp3"
     },
     {
       "text": "Perhaps this is too much for your feeble mind.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Perhaps+this+is+too+much+for+your+feeble+mind..mp3"
     },
     {
       "text": "You have reached the limits of your knowledge. How predictable.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/You+have+reached+the+limits+of+your+knowledge.+How+predictable..mp3"
     },
-    { "text": "No, no, no! That's not it at all.", "audioUrl": null }
+    {
+      "text": "No, no, no! That's not it at all.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/No%2C+no%2C+no+That+s+not+it+at+all..mp3"
+    }
   ],
   "FIRST_STRIKE": [
-    { "text": "One strike. A warning.", "audioUrl": null },
-    { "text": "Careful now. The abyss is unforgiving.", "audioUrl": null }
+    {
+      "text": "One strike. A warning.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/One+strike.+A+warning..mp3"
+    },
+    {
+      "text": "Careful now. The abyss is unforgiving.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Careful+now.+The+abyss+is+unforgiving..mp3"
+    }
   ],
   "LAST_STRIKE": [
-    { "text": "Your last chance. Make it count.", "audioUrl": null },
+    {
+      "text": "Your last chance. Make it count.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Your+last+chance.+Make+it+count..mp3"
+    },
     {
       "text": "One more failure and your soul is forfeit. No pressure.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/One+more+failure+and+your+soul+is+forfeit.+No+pressure..mp3"
     }
   ],
   "GAME_OVER": [
-    { "text": "Game over. Your soul is mine.", "audioUrl": null },
+    {
+      "text": "Game over. Your soul is mine.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Game+over.+Your+soul+is+mine..mp3"
+    },
     {
       "text": "Three strikes. You have failed. As I knew you would.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Three+strikes.+You+have+failed.+As+I+knew+you+would..mp3"
     },
-    { "text": "Your trial ends here. You are not worthy.", "audioUrl": null }
+    {
+      "text": "Your trial ends here. You are not worthy.",
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Your+trial+ends+here.+You+are+not+worthy..mp3"
+    }
   ],
   "SESSION_WIN": [
     {
       "text": "You've survived... for now. Don't think this is over.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/You've+survived...+for+now.+Don't+think+this+is+over..mp3"
     },
     {
       "text": "You've cleared all available challenges. Go on, get out of here before I change my mind.",
-      "audioUrl": null
+      "audioUrl": "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/You've+cleared+all+available+challenges.+Go+on%2C+get+out+of+here+before+I+change+my+mind..mp3"
     }
   ]
 }

@@ -132,63 +132,7 @@ const StatusBar = ({ stats, currentQuestion, sessionProgress }) => {
         </div>
       </div>
 
-      {/* Session Progress */}
-      <div className="flex-shrink-0 bg-gradient-to-r from-gray-900/60 to-blue-900/40 p-3 rounded-lg border border-blue-500/50 mb-4">
-        <h3
-          className="font-bold text-xs text-blue-400 mb-2 flex items-center gap-2"
-          style={{ fontFamily: "'Orbitron', monospace" }}
-        >
-          <FaQuestionCircle className="text-blue-400" />
-          SESSION PROGRESS
-        </h3>
-
-        {/* Progress Bar */}
-        <div className="mb-2">
-          <div className="flex justify-between text-xs text-gray-300 mb-1">
-            <span>
-              Questions: {questionsAnswered}/{totalQuestions}
-            </span>
-            <span>
-              {((questionsAnswered / totalQuestions) * 100).toFixed(0)}%
-            </span>
-          </div>
-          <div className="w-full bg-gray-700 rounded-full h-2">
-            <div
-              className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
-              style={{
-                width: `${(questionsAnswered / totalQuestions) * 100}%`,
-              }}
-            />
-          </div>
-        </div>
-
-        {/* Answer Breakdown */}
-        <div className="grid grid-cols-2 gap-2 text-xs">
-          <div className="text-center">
-            <div className="text-green-400 font-bold">{correctAnswers}</div>
-            <div className="text-gray-400">Correct</div>
-          </div>
-          <div className="text-center">
-            <div className="text-red-400 font-bold">{incorrectAnswers}</div>
-            <div className="text-gray-400">Incorrect</div>
-          </div>
-        </div>
-
-        {/* Difficulty Badge */}
-        <div className="mt-2 text-center">
-          <span
-            className={`text-xs font-bold capitalize px-2 py-1 rounded ${
-              currentDifficulty === "hard"
-                ? "bg-red-600 text-white"
-                : currentDifficulty === "medium"
-                ? "bg-orange-500 text-white"
-                : "bg-green-600 text-white"
-            }`}
-          >
-            Current: {currentDifficulty}
-          </span>
-        </div>
-      </div>
+      {/* Session Progress removed as requested */}
 
       {/* Current Question Info - Fixed at bottom */}
       <div className="flex-shrink-0 space-y-2">
