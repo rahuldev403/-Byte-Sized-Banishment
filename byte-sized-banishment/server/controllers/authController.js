@@ -78,18 +78,14 @@ export const verifyEmail = async (req, res) => {
     const user = await User.findById(req.params.userId);
     if (!user) {
       return res.redirect(
-        `${
-          config.CLIENT_URL || "http://localhost:5173"
-        }/verification-error?error=user-not-found`
+        `${config.CLIENT_URL}/verification-error?error=user-not-found`
       );
     }
 
     // Check if user is already verified
     if (user.isVerified) {
       return res.redirect(
-        `${
-          config.CLIENT_URL || "http://localhost:5173"
-        }/verification-error?error=already-verified`
+        `${config.CLIENT_URL}/verification-error?error=already-verified`
       );
     }
 
@@ -100,9 +96,7 @@ export const verifyEmail = async (req, res) => {
     });
     if (!token) {
       return res.redirect(
-        `${
-          config.CLIENT_URL || "http://localhost:5173"
-        }/verification-error?error=invalid-token`
+        `${config.CLIENT_URL}/verification-error?error=invalid-token`
       );
     }
 
@@ -126,16 +120,10 @@ export const verifyEmail = async (req, res) => {
     }
 
     // Redirect to success page
-    res.redirect(
-      `${config.CLIENT_URL || "http://localhost:5173"}/verification-success`
-    );
+    res.redirect(`${config.CLIENT_URL}/verification-success`);
   } catch (error) {
     console.error("Email verification error:", error);
-    res.redirect(
-      `${
-        config.CLIENT_URL || "http://localhost:5173"
-      }/verification-error?error=server-error`
-    );
+    res.redirect(`${config.CLIENT_URL}/verification-error?error=server-error`);
   }
 };
 
