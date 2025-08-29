@@ -20,18 +20,44 @@ export const register = async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
-    // Check if username or email already exists
-    const existingUserByEmail = await User.findOne({ email });
-    if (existingUserByEmail) {
-      return res
-        .status(400)
-        .json({ message: "User with this email already exists." });
-    }
+    // Check if username already exists
     const existingUserByUsername = await User.findOne({ username });
     if (existingUserByUsername) {
       return res
         .status(400)
         .json({ message: "This username is already taken." });
+    }
+
+    // Check if email already exists
+    const existingUserByEmail = await User.findOne({ email });
+    if (existingUserByEmail) {
+      if (existingUserByEmail.isVerified) {
+        return res
+          .status(400)
+          .json({ message: "User with this email already exists." });
+      } else {
+        // User exists but not verified: re-send verification
+        await Token.deleteMany({ userId: existingUserByEmail._id });
+        const verificationToken = crypto.randomBytes(32).toString("hex");
+        await new Token({
+          userId: existingUserByEmail._id,
+          token: verificationToken,
+        }).save();
+        const verificationUrl = `${config.CLIENT_URL}/verify/${existingUserByEmail.id}/${verificationToken}`;
+        const emailTemplate = getRegistrationVerificationTemplate(
+          verificationUrl,
+          existingUserByEmail.email
+        );
+        await sendEmail(
+          existingUserByEmail.email,
+          "Welcome to Byte-Sized Banishment - Verify Your Email",
+          emailTemplate
+        );
+        return res.status(200).json({
+          message:
+            "Account already exists but is not verified. Verification email resent. Please check your inbox.",
+        });
+      }
     }
 
     // Create a new user with the username
