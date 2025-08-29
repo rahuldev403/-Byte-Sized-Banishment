@@ -19,7 +19,7 @@ const ResetPassword = () => {
     const verifyToken = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/auth/verify-reset-token/${token}`
+          `${import.meta.env.VITE_API_URL}/api/auth/verify-reset-token/${token}`
         );
         setValidToken(data.valid);
         if (!data.valid) {
@@ -54,7 +54,7 @@ const ResetPassword = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/auth/reset-password",
+        `${import.meta.env.VITE_API_URL}/api/auth/reset-password`,
         { token, password }
       );
 

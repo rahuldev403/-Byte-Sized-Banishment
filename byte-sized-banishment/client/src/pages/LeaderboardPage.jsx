@@ -2,13 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import {
-  FaTrophy,
-  FaFire,
-  FaMedal,
-  FaCrown,
-  FaAward,
-} from "react-icons/fa";
+import { FaTrophy, FaFire, FaMedal, FaCrown, FaAward } from "react-icons/fa";
 import { GiDevilMask } from "react-icons/gi";
 import { motion } from "framer-motion";
 
@@ -22,7 +16,7 @@ const LeaderboardPage = () => {
     const fetchLeaderboard = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/leaderboard"
+          `${import.meta.env.VITE_API_URL}/api/leaderboard`
         );
         if (data.success) {
           setLeaderboard(data.leaderboard);

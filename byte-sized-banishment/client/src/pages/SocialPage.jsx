@@ -252,7 +252,7 @@ const FindPlayers = ({ token }) => {
         try {
           console.log("Searching for users with query:", query);
           const { data } = await axios.get(
-            `http://localhost:5000/api/friends/search?q=${query}`,
+            `${import.meta.env.VITE_API_URL}/api/friends/search?q=${query}`,
             { headers: { Authorization: `Bearer ${token}` } }
           );
           console.log("Search results:", data);
@@ -278,7 +278,7 @@ const FindPlayers = ({ token }) => {
         user._id
       );
       const response = await axios.post(
-        `http://localhost:5000/api/friends/request/${user._id}`,
+        `${import.meta.env.VITE_API_URL}/api/friends/request/${user._id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -332,7 +332,7 @@ const FindPlayers = ({ token }) => {
 const FriendRequests = ({ requests, token, onUpdate }) => {
   const handleAccept = async (userId) => {
     await axios.post(
-      `http://localhost:5000/api/friends/accept/${userId}`,
+      `${import.meta.env.VITE_API_URL}/api/friends/accept/${userId}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -340,7 +340,7 @@ const FriendRequests = ({ requests, token, onUpdate }) => {
   };
   const handleDecline = async (userId) => {
     await axios.post(
-      `http://localhost:5000/api/friends/decline/${userId}`,
+      `${import.meta.env.VITE_API_URL}/api/friends/decline/${userId}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -435,10 +435,10 @@ const SocialPage = () => {
     setLoading(true);
     try {
       const [friendsRes, duelsRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/friends/", {
+        axios.get(`${import.meta.env.VITE_API_URL}/api/friends/`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get("http://localhost:5000/api/duels/", {
+        axios.get(`${import.meta.env.VITE_API_URL}/api/duels/`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);

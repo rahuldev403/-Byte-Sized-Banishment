@@ -38,13 +38,8 @@ const SkillTreePage = () => {
         }
 
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        console.log(
-          "Fetching subjects from:",
-          "http://localhost:5000/api/gauntlet/subjects"
-        );
-
         const { data } = await axios.get(
-          "http://localhost:5000/api/gauntlet/subjects",
+          `${import.meta.env.VITE_API_URL}/api/gauntlet/subjects`,
           config
         );
 
@@ -85,7 +80,9 @@ const SkillTreePage = () => {
         const token = localStorage.getItem("authToken");
         const config = { headers: { Authorization: `Bearer ${token}` } };
         const { data } = await axios.get(
-          `http://localhost:5000/api/skill-tree/${encodeURIComponent(subject)}`,
+          `${import.meta.env.VITE_API_URL}/api/skill-tree/${encodeURIComponent(
+            subject
+          )}`,
           config
         );
 

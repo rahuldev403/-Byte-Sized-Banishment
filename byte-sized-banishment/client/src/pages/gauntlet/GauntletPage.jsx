@@ -283,7 +283,7 @@ const GauntletPage = () => {
       };
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/gauntlet/timeout",
+        `${import.meta.env.VITE_API_URL}/api/gauntlet/timeout`,
         payload,
         config
       );
@@ -372,7 +372,7 @@ const GauntletPage = () => {
         answer: userAnswer,
       };
       const { data } = await axios.post(
-        "http://localhost:5000/api/gauntlet/submit",
+        `${import.meta.env.VITE_API_URL}/api/gauntlet/submit`,
         payload,
         config
       );
@@ -496,7 +496,7 @@ const GauntletPage = () => {
       };
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/gauntlet/quit",
+        `${import.meta.env.VITE_API_URL}/api/gauntlet/quit`,
         payload,
         config
       );
