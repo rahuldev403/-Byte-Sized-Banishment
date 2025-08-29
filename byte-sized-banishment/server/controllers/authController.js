@@ -39,13 +39,15 @@ export const register = async (req, res) => {
     await user.save();
 
     // --- The rest of the function (token generation, email sending) remains the same ---
+
     const verificationToken = crypto.randomBytes(32).toString("hex");
     await new Token({
       userId: user._id,
       token: verificationToken,
     }).save();
 
-    const verificationUrl = `${config.BASE_URL}/api/auth/verify/${user.id}/${verificationToken}`;
+    // Verification link should point to frontend, not backend
+    const verificationUrl = `${config.CLIENT_URL}/verify/${user.id}/${verificationToken}`;
     const emailTemplate = getRegistrationVerificationTemplate(
       verificationUrl,
       user.email

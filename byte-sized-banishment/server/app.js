@@ -15,7 +15,14 @@ import config from "./config/index.js";
 
 connectDB();
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: config.CLIENT_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 
 // --- API Routes ---

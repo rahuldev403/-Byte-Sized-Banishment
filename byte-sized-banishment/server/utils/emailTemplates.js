@@ -1,4 +1,6 @@
 // Email template for registration verification
+import config from "../config/index.js";
+
 export const getRegistrationVerificationTemplate = (
   verificationUrl,
   userEmail
@@ -348,9 +350,7 @@ export const getEmailVerificationConfirmationTemplate = (userEmail) => {
                 </div>
                 
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="${
-                      process.env.CLIENT_URL || "http://localhost:5173"
-                    }" class="login-button">
+                    <a href="${config.CLIENT_URL}" class="login-button">
                         🚀 Enter the Arena
                     </a>
                 </div>
@@ -669,9 +669,7 @@ export const getPasswordResetConfirmationTemplate = (userEmail) => {
                 </div>
                 
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="${
-                      process.env.CLIENT_URL || "http://localhost:5173"
-                    }" class="login-button">
+                    <a href="${config.CLIENT_URL}" class="login-button">
                         🚀 Continue to Dashboard
                     </a>
                 </div>
