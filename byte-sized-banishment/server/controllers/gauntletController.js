@@ -260,50 +260,60 @@ const getTimeoutDialogue = (difficulty, questionType) => {
     easy: {
       mcq: {
         text: "Too slow! Even a sloth could pick faster than that!",
-        audioUrl: null, // Placeholder for easy-mcq timeout audio
+        audioUrl:
+          "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Too+slow+Even+a+sloth+could+pick+faster+than+that.mp3", // Placeholder for easy-mcq timeout audio
       },
       integer: {
         text: "Time's up! Your calculations need more speed, mortal!",
-        audioUrl: null, // Placeholder for easy-integer timeout audio
+        audioUrl:
+          "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Time's+up+Your+calculations+need+more+speed%2C+mortal.mp3", // Placeholder for easy-integer timeout audio
       },
       code: {
         text: "Timeout! Your coding fingers are as slow as your brain!",
-        audioUrl: null, // Placeholder for easy-code timeout audio
+        audioUrl:
+          "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Timeout+Your+coding+fingers+are+as+slow+as+your+brain.mp3", // Placeholder for easy-code timeout audio
       },
     },
     medium: {
       mcq: {
         text: "Time expired! Speed is as important as accuracy in my realm!",
-        audioUrl: null, // Placeholder for medium-mcq timeout audio
+        audioUrl:
+          "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Time+expired+Speed+is+as+important+as+accuracy+in+my+realm.mp3", // Placeholder for medium-mcq timeout audio
       },
       integer: {
         text: "Too sluggish! Mathematical prowess requires swift thinking!",
-        audioUrl: null, // Placeholder for medium-integer timeout audio
+        audioUrl:
+          "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Too+sluggish+Mathematical+prowess+requires+swift+thinking.mp3", // Placeholder for medium-integer timeout audio
       },
       code: {
         text: "Code timeout! Your programming pace disappoints me greatly!",
-        audioUrl: null, // Placeholder for medium-code timeout audio
+        audioUrl:
+          "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Code+timeout+Your+programming+pace+disappoints+me+greatly.mp3", // Placeholder for medium-code timeout audio
       },
     },
     hard: {
       mcq: {
         text: "Pathetically slow! Elite minds don't hesitate this long!",
-        audioUrl: null, // Placeholder for hard-mcq timeout audio
+        audioUrl:
+          "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Pathetically+slow+Elite+minds+don't+hesitate+this+long.mp3", // Placeholder for hard-mcq timeout audio
       },
       integer: {
         text: "Time's up! Advanced problems demand rapid solutions!",
-        audioUrl: null, // Placeholder for hard-integer timeout audio
+        audioUrl:
+          "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Time's+up+Advanced+problems+demand+rapid+solutions.mp3", // Placeholder for hard-integer timeout audio
       },
       code: {
         text: "Coding timeout! Four minutes should be plenty for a competent programmer!",
-        audioUrl: null, // Placeholder for hard-code timeout audio
+        audioUrl:
+          "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Coding+timeout+Four+minutes+should+be+plenty+for+a+competent+programmer.mp3", // Placeholder for hard-code timeout audio
       },
     },
   };
 
   const messageObj = timeoutMessages[difficulty]?.[questionType] || {
     text: "Time's up! Speed up or face my wrath!",
-    audioUrl: null, // Placeholder for generic timeout audio
+    audioUrl:
+      "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Time's+up+Speed+up+or+face+my+wrath.mp3", // Placeholder for generic timeout audio
   };
   return messageObj;
 };
@@ -502,7 +512,8 @@ export const submitAnswer = async (req, res) => {
         };
         devilDialogue = {
           text: "A 5-win streak... Impressive. You've been blessed with Feverish Focus, granting 1.5x XP for 5 minutes.",
-          audioUrl: null, // Placeholder for blessing audio
+          audioUrl:
+            "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/A+5-win+streak...+Impressive.+You've+been+blessed+with+Feverish+Focus%2C+granting+1.5x+XP+for+5+minutes..mp3", // Placeholder for blessing audio
         };
       }
 
@@ -512,8 +523,9 @@ export const submitAnswer = async (req, res) => {
         user.xpToNextLevel = user.level * 150;
         user.rank = getRankForLevel(user.level);
         devilDialogue = {
-          text: `You've reached Level ${user.level}! Your new rank is ${user.rank}. Don't get cocky.`,
-          audioUrl: null, // Placeholder for level up audio
+          text: `Congrats You've reached new Level . Don't get cocky.`,
+          audioUrl:
+            "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/Congrats+You've+reached+new+Level+.+Don't+get+cocky..mp3", // Placeholder for level up audio
         };
       }
     } else {
@@ -546,7 +558,8 @@ export const submitAnswer = async (req, res) => {
         };
         devilDialogue = {
           text: "You're faltering. You've been cursed with Crippling Doubt! Your XP gains are halved for 5 minutes.",
-          audioUrl: null, // Placeholder for curse audio
+          audioUrl:
+            "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/You're+faltering.+You've+been+cursed+with+Crippling+Doubt!+Your+XP+gains+are+halved+for+5+minutes..mp3", // Placeholder for curse audio
         };
       }
     }
@@ -656,7 +669,8 @@ export const submitAnswer = async (req, res) => {
       // Add audioUrl placeholder to SESSION_WIN feedback
       const sessionWinDialogue = getDevilDialogue("SESSION_WIN");
       if (sessionWinDialogue && !sessionWinDialogue.audioUrl) {
-        sessionWinDialogue.audioUrl = null; // Placeholder for session win audio
+        sessionWinDialogue.audioUrl =
+          "https://devils-gauntlet-audio-12345.s3.eu-north-1.amazonaws.com/You've+survived...+for+now.+Don't+think+this+is+over..mp3"; // Placeholder for session win audio
       }
       return res.json({
         result: isCorrect ? "correct" : "incorrect",
