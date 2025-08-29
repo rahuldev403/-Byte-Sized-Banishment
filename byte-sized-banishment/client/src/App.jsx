@@ -16,6 +16,7 @@ import DuelGauntletPage from "./pages/DuelGauntletPage";
 import ResetPassword from "./pages/ResetPassword";
 import VerificationSuccess from "./pages/VerificationSuccess";
 import VerificationError from "./pages/VerificationError";
+import EmailVerification from "./pages/EmailVerification";
 import ProtectedRoute from "./components/ProtectedRoute";
 import QuestionUploadPage from "./pages/QuestionUploadPage";
 import backgroundVideo from "./assets/background.mp4";
@@ -139,6 +140,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/verify/:userId/:token" element={<EmailVerification />} />
         <Route path="/verification-success" element={<VerificationSuccess />} />
         <Route path="/verification-error" element={<VerificationError />} />
         <Route
