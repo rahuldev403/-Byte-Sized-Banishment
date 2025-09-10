@@ -155,19 +155,36 @@ const DuelGauntletPage = () => {
     }
   };
 
-  if (loading || !duel)
+  if (
+    loading ||
+    !duel ||
+    !duel.challenger ||
+    !duel.opponent ||
+    !currentUser ||
+    !Array.isArray(questions) ||
+    questions.length === 0
+  )
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-red-900 flex items-center justify-center text-white text-2xl animate-pulse">
         <div className="text-center">
           <FaSkull className="text-6xl text-red-500 mx-auto mb-4 animate-bounce" />
-          <p>Loading Duel...</p>
+          <p>
+            {loading
+              ? "Loading Duel..."
+              : "Duel data is missing or invalid. Please try again later or contact support."}
+          </p>
         </div>
       </div>
     );
 
+  // Defensive: opponent logic
+  let opponent = null;
+  if (duel.challenger && duel.opponent && currentUser) {
+    opponent =
+      duel.challenger._id === currentUser.id ? duel.opponent : duel.challenger;
+  }
+
   const currentQuestion = questions[currentQuestionIndex];
-  const opponent =
-    duel.challenger._id === currentUser.id ? duel.opponent : duel.challenger;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-red-900 text-white relative overflow-hidden">
