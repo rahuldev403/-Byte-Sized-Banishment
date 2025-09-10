@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { FaTrophy, FaFire, FaMedal, FaCrown, FaAward } from "react-icons/fa";
@@ -15,9 +15,7 @@ const LeaderboardPage = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/leaderboard`
-        );
+        const { data } = await api.get("/api/leaderboard");
         if (data.success) {
           setLeaderboard(data.leaderboard);
         }

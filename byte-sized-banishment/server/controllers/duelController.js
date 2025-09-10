@@ -21,11 +21,9 @@ export const createDuel = async (req, res) => {
     ]);
 
     if (duelQuestions.length < 5) {
-      return res
-        .status(400)
-        .json({
-          message: `Not enough questions in the '${subject}' subject to start a duel.`,
-        });
+      return res.status(400).json({
+        message: `Not enough questions in the '${subject}' subject to start a duel.`,
+      });
     }
 
     const questionIds = duelQuestions.map((q) => q._id);
@@ -111,21 +109,17 @@ export const submitDuelScore = async (req, res) => {
 
     if (isChallenger) {
       if (duel.challengerScore !== -1)
-        return res
-          .status(400)
-          .json({
-            message: "You have already submitted your score for this duel.",
-          });
+        return res.status(400).json({
+          message: "You have already submitted your score for this duel.",
+        });
       duel.challengerScore = score;
       duel.status = "complete"; // If challenger plays second, it's now complete
     } else {
       // User is the opponent
       if (duel.opponentScore !== -1)
-        return res
-          .status(400)
-          .json({
-            message: "You have already submitted your score for this duel.",
-          });
+        return res.status(400).json({
+          message: "You have already submitted your score for this duel.",
+        });
       duel.opponentScore = score;
       duel.status = "pending_challenger"; // Now waiting for the challenger
     }

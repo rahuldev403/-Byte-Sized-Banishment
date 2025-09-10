@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+// import axios from "axios"; // Removed, using api.js for all requests
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,6 +18,7 @@ import {
 import { GiLevelEndFlag, GiCrown, GiFist } from "react-icons/gi";
 import GauntletSetupModal from "../components/GauntletSetupModal";
 import { useCountdown } from "../hooks/useCountdown";
+import api from "../utils/api";
 
 // --- PLACEHOLDER ASSETS ---
 import backgroundVideo from "../assets/card-bg.mp4";
@@ -408,10 +409,7 @@ const Dashboard = () => {
         const token = localStorage.getItem("authToken");
         if (!token) throw new Error("No auth token found.");
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/user/dashboard`,
-          config
-        );
+        const { data } = await api.get(`/api/user/dashboard`, config);
         if (data.success) {
           setDashboardData(data);
           setActiveEffect(data.stats.activeEffect || null);
@@ -612,8 +610,8 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem("authToken");
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/gauntlet/start-weakness-drill`,
+      const { data } = await api.post(
+        `/api/gauntlet/start-weakness-drill`,
         {},
         config
       );

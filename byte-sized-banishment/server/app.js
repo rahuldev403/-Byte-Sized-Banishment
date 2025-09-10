@@ -12,9 +12,11 @@ import leaderboardRoutes from "./routes/leaderboardRoutes.js";
 import friendRoutes from "./routes/friendRoutes.js";
 import duelRoutes from "./routes/duelRoutes.js";
 import config from "./config/index.js";
+import cookieParser from "cookie-parser";
 
 connectDB();
 const app = express();
+app.use(cookieParser());
 app.use(
   cors({
     origin: config.CLIENT_URL,
@@ -36,4 +38,4 @@ app.use("/api/duels", duelRoutes);
 
 app.get("/", (req, res) => res.send("Byte-Sized Banishment API is running..."));
 const PORT = config.PORT;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log("Server running 😈"));

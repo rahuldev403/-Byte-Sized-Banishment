@@ -6,7 +6,10 @@ import {
   forgotPassword,
   verifyResetToken,
   resetPassword,
+  refreshAccessToken,
 } from "../controllers/authController.js";
+// @route   POST /api/auth/refresh-token
+router.post("/refresh-token", refreshAccessToken);
 
 const router = express.Router();
 

@@ -20,6 +20,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import ChallengeModal from "../components/ChallengeModal";
 import { useAuth } from "../context/AuthContext";
+import api from "../utils/api";
 
 // --- Child Components for the Social Page ---
 
@@ -435,11 +436,15 @@ const SocialPage = () => {
     setLoading(true);
     try {
       const [friendsRes, duelsRes] = await Promise.all([
-        axios.get(`${import.meta.env.VITE_API_URL}/api/friends/`, {
-          headers: { Authorization: `Bearer ${token}` },
+        api.get(`/api/friends/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
         }),
-        axios.get(`${import.meta.env.VITE_API_URL}/api/duels/`, {
-          headers: { Authorization: `Bearer ${token}` },
+        api.get(`/api/duels/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
         }),
       ]);
       setData({
@@ -452,7 +457,7 @@ const SocialPage = () => {
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     fetchData();

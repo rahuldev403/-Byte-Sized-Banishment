@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../utils/api";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -61,16 +61,22 @@ const DuelGauntletPage = () => {
     const fetchDuel = async () => {
       try {
         const token = localStorage.getItem("authToken");
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/duels/${duelId}`,
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
+        const { data } = await api.get(`/api/duels/${duelId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setDuel(data.duel);
         setQuestions(data.duel.questions);
         setQuestionStartTime(Date.now()); // Start timer for first question
       } catch (error) {
-        toast.error("Failed to load duel.");
-        navigate("/friends");
+        if (error.response && error.response.status === 403) {
+          toast.error(
+            "You are not authorized to access this duel. Only participants can view it."
+          );
+          navigate("/friends");
+        } else {
+          toast.error("Failed to load duel.");
+          navigate("/friends");
+        }
       } finally {
         setLoading(false);
       }
@@ -141,8 +147,8 @@ const DuelGauntletPage = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("authToken");
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/duels/submit/${duelId}`,
+      await api.post(
+        `/api/duels/submit/${duelId}`,
         { score },
         { headers: { Authorization: `Bearer ${token}` } }
       );

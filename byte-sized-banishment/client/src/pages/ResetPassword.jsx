@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
+import api from "../utils/api";
 import toast from "react-hot-toast";
 import { FaExclamationTriangle } from "react-icons/fa";
 
@@ -18,9 +18,7 @@ const ResetPassword = () => {
     // Verify token validity on component mount
     const verifyToken = async () => {
       try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/auth/verify-reset-token/${token}`
-        );
+        const { data } = await api.get(`/api/auth/verify-reset-token/${token}`);
         setValidToken(data.valid);
         if (!data.valid) {
           toast.error("Invalid or expired reset link");
@@ -53,10 +51,10 @@ const ResetPassword = () => {
     const toastId = toast.loading("Resetting password...");
 
     try {
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/reset-password`,
-        { token, password }
-      );
+      const { data } = await api.post(`/api/auth/reset-password`, {
+        token,
+        password,
+      });
 
       if (data.success) {
         toast.success("Password reset successfully! Redirecting to login...", {

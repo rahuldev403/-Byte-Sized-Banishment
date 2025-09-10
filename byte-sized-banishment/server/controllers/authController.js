@@ -1,4 +1,5 @@
 import User from "../models/userModel.js";
+import RefreshToken from "../models/refreshTokenModel.js";
 import Token from "../models/tokenModel.js";
 import PasswordResetToken from "../models/passwordResetTokenModel.js";
 import sendEmail from "../utils/sendEmail.js";
@@ -189,9 +190,25 @@ export const login = async (req, res) => {
     jwt.sign(
       payload,
       config.JWT_SECRET,
-      { expiresIn: "1h" }, // Token expires in 1 hour
-      (err, token) => {
+      { expiresIn: "24h" }, // Token expires in 24 hours
+      async (err, token) => {
         if (err) throw err;
+
+        // Generate refresh token (random string)
+        const refreshTokenValue = crypto.randomBytes(64).toString("hex");
+        await RefreshToken.create({
+          userId: user._id,
+          token: refreshTokenValue,
+        });
+
+        // Send refresh token as HTTP-only cookie
+        res.cookie("refreshToken", refreshTokenValue, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        });
+
         res.json({
           message: "Login successful",
           token,
@@ -385,5 +402,36 @@ export const resetPassword = async (req, res) => {
       success: false,
       message: "Failed to reset password",
     });
+  }
+};
+
+// @desc    Refresh access token using refresh token
+// @route   POST /api/auth/refresh-token
+// @access  Public
+export const refreshAccessToken = async (req, res) => {
+  try {
+    const refreshTokenValue = req.cookies.refreshToken;
+    if (!refreshTokenValue) {
+      return res.status(401).json({ message: "No refresh token provided" });
+    }
+    const storedToken = await RefreshToken.findOne({
+      token: refreshTokenValue,
+    });
+    if (!storedToken) {
+      return res.status(401).json({ message: "Invalid refresh token" });
+    }
+    const user = await User.findById(storedToken.userId);
+    if (!user) {
+      return res.status(401).json({ message: "User not found" });
+    }
+    // Issue new access token
+    const payload = { user: { id: user.id } };
+    jwt.sign(payload, config.JWT_SECRET, { expiresIn: "24h" }, (err, token) => {
+      if (err) throw err;
+      res.json({ token });
+    });
+  } catch (error) {
+    console.error("Refresh token error:", error);
+    res.status(500).json({ message: "Server Error" });
   }
 };

@@ -1,4 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
+import api from "../utils/api";
 import { motion } from "framer-motion";
 import {
   FaUser,
