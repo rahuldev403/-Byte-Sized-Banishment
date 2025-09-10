@@ -72,7 +72,10 @@ export const getDuels = async (req, res) => {
 // @access  Private
 export const getDuelDetails = async (req, res) => {
   try {
-    const duel = await Duel.findById(req.params.duelId).populate("questions"); // Populate all question data
+    const duel = await Duel.findById(req.params.duelId)
+      .populate("questions")
+      .populate("challenger", "username rank")
+      .populate("opponent", "username rank"); // Populate all question data
 
     if (!duel) return res.status(404).json({ message: "Duel not found." });
 
