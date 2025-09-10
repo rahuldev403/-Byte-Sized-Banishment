@@ -8,10 +8,11 @@ import {
   resetPassword,
   refreshAccessToken,
 } from "../controllers/authController.js";
-// @route   POST /api/auth/refresh-token
-router.post("/refresh-token", refreshAccessToken);
 
 const router = express.Router();
+
+// @route   POST /api/auth/refresh-token
+router.post("/refresh-token", refreshAccessToken);
 
 // @route   POST /api/auth/register
 router.post("/register", register);
