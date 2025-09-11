@@ -54,7 +54,7 @@ const DuelGauntletPage = () => {
   const [timerActive, setTimerActive] = useState(true);
   const [questionStartTime, setQuestionStartTime] = useState(Date.now());
   const [feedback, setFeedback] = useState({
-    text: "Welcome to the duel! Show no mercy...",
+    text: "Welcome to the duel! Good luck.",
   });
 
   useEffect(() => {
@@ -123,11 +123,11 @@ const DuelGauntletPage = () => {
       ) {
         setScore((prev) => prev + 10);
         setFeedback({
-          text: "Correct! Your opponent trembles before your skill...",
+          text: "Correct!",
         });
       } else {
         setFeedback({
-          text: "Incorrect! The devil laughs at your mistake...",
+          text: "Incorrect!",
         });
       }
     }
