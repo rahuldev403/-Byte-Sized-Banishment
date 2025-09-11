@@ -41,6 +41,14 @@ const duelSchema = new mongoose.Schema(
       ref: "User",
       default: null,
     },
+    expiresAt: {
+      type: Date,
+      default: function () {
+        // Duel invitation expires in 1 hour
+        return new Date(Date.now() + 60 * 60 * 1000);
+      },
+      index: { expires: "1h" }, // Optional: auto-remove expired duels
+    },
   },
   { timestamps: true }
 );

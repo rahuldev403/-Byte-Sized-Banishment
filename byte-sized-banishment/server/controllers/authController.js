@@ -65,8 +65,6 @@ export const register = async (req, res) => {
     const user = new User({ username, email, password });
     await user.save();
 
-    // --- The rest of the function (token generation, email sending) remains the same ---
-
     const verificationToken = crypto.randomBytes(32).toString("hex");
     await new Token({
       userId: user._id,

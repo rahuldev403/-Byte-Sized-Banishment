@@ -28,18 +28,24 @@ export const createDuel = async (req, res) => {
 
     const questionIds = duelQuestions.map((q) => q._id);
 
-    // 2. Create the new duel
+    // 2. Create the new duel (expires in 1 hour)
     const newDuel = new Duel({
       challenger: challengerId,
       opponent: opponentId,
       subject: subject,
       questions: questionIds,
+      expiresAt: new Date(Date.now() + 60 * 60 * 1000),
     });
 
     await newDuel.save();
 
     // Here you would ideally send a notification to the opponent
-    res.status(201).json({ message: "Duel challenge sent!", duel: newDuel });
+    res
+      .status(201)
+      .json({
+        message: "Duel challenge sent! Expires in 1 hour.",
+        duel: newDuel,
+      });
   } catch (error) {
     console.error("Error creating duel:", error);
     res.status(500).json({ message: "Server Error" });
@@ -84,7 +90,14 @@ export const getDuelDetails = async (req, res) => {
     ) {
       return res
         .status(403)
-        .json({ message: "You are not part of this duel." });
+        .json({ message: "You are not authorized to access this challenge." });
+    }
+
+    // Expiry check: duel invitation expires in 1 hour
+    if (duel.expiresAt && new Date() > duel.expiresAt) {
+      return res
+        .status(410)
+        .json({ message: "This duel invitation has expired." });
     }
 
     res.json({ success: true, duel });
