@@ -40,12 +40,10 @@ export const createDuel = async (req, res) => {
     await newDuel.save();
 
     // Here you would ideally send a notification to the opponent
-    res
-      .status(201)
-      .json({
-        message: "Duel challenge sent! Expires in 1 hour.",
-        duel: newDuel,
-      });
+    res.status(201).json({
+      message: "Duel challenge sent! Expires in 1 hour.",
+      duel: newDuel,
+    });
   } catch (error) {
     console.error("Error creating duel:", error);
     res.status(500).json({ message: "Server Error" });
@@ -83,10 +81,16 @@ export const getDuelDetails = async (req, res) => {
 
     if (!duel) return res.status(404).json({ message: "Duel not found." });
 
-    // Security check: ensure the current user is part of this duel
+    // Security check: ensure the current user is part of this duel (handles populated and unpopulated fields)
+    const challengerId = duel.challenger._id
+      ? duel.challenger._id.toString()
+      : duel.challenger.toString();
+    const opponentId = duel.opponent._id
+      ? duel.opponent._id.toString()
+      : duel.opponent.toString();
     if (
-      duel.challenger.toString() !== req.user._id.toString() &&
-      duel.opponent.toString() !== req.user._id.toString()
+      challengerId !== req.user._id.toString() &&
+      opponentId !== req.user._id.toString()
     ) {
       return res
         .status(403)
