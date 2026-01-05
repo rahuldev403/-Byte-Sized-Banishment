@@ -4,7 +4,7 @@ A devilishly fun, competitive web platform for coding challenges, duels, and ski
 
 ---
 
-![App Screenshot](./screenshot.png) `<!-- Replace with your actual screenshot path -->`
+![App Screenshot](./image.png)
 
 [Live Demo](https://byte-sized-banishment-f7vm.vercel.app/)
 
