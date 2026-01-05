@@ -53,10 +53,6 @@ byte-sized-banishment/
 ├── server/   # Node.js/Express backend
 ```
 
-## 🖼️ Screenshot
-
-> _Add a screenshot of your app here!_
-
 ## 🌐 Live Link
 
 [https://byte-sized-banishment-f7vm.vercel.app/](https://byte-sized-banishment-f7vm.vercel.app/)
