@@ -11,12 +11,24 @@ const sendEmail = async (to, subject, text) => {
     });
 
     const transporter = nodemailer.createTransport({
-      service: config.SERVICE,
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // Use STARTTLS
       auth: {
         user: config.EMAIL_USER,
         pass: config.EMAIL_PASS,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
+      connectionTimeout: 10000, // 10 seconds
+      greetingTimeout: 10000,
+      socketTimeout: 10000,
     });
+
+    // Verify connection configuration
+    await transporter.verify();
+    console.log("SMTP connection verified successfully");
 
     await transporter.sendMail({
       from: `Byte-Sized Banishment <${config.EMAIL_USER}>`,
