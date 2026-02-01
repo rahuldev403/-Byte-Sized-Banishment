@@ -6,7 +6,7 @@ A devilishly fun, competitive web platform for coding challenges, duels, and ski
 
 ![App Screenshot](./image.png)
 
-[Live Demo](https://byte-sized-banishment-f7vm.vercel.app/)
+[Live Demo](https://byte-sized-banishment.vercel.app/)
 
 ---
 
@@ -52,10 +52,6 @@ byte-sized-banishment/
 ├── client/   # React frontend
 ├── server/   # Node.js/Express backend
 ```
-
-## 🖼️ Screenshot
-
-> _Add a screenshot of your app here!_
 
 ## 🌐 Live Link
 
